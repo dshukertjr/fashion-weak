@@ -25,20 +25,17 @@ class _QuestionPageState extends State<QuestionPage> {
     super.initState();
     _firebaseAuth.onAuthStateChanged.listen((user) {
       setState(() {
-        print("auth state change");
-        print(user);
+        // print("auth state change");
+        // print(user);
         _currentUser = user;
       });
     });
   }
 
-  void _fabPressed() {
-    Navigator.of(context).pushNamed("/compose");
-  }
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
     return new FlatButton(
-          child: new Container(
+      child: new Container(
         // color: Colors.green,
         // padding: const EdgeInsets.only(left: 8.0, right: 8.0),
         child: new Column(

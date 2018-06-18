@@ -21,12 +21,33 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
 
   TabController controller;
+  IconData fabIcon = Icons.add;
 
   @override
   void initState() {
     super.initState();
     controller = new TabController(vsync: this, length: 2);
+    controller.addListener(_tabChanged);
   }
+
+  void _tabChanged () {
+    print("tab changed called");
+    final tabIndex = controller.index;
+    setState(() {
+          fabIcon = tabIndex == 0? Icons.add: Icons.camera_alt;
+        });
+  }
+
+  void _fabPressed() {
+    final tabIndex = controller.index;
+    print(tabIndex);
+    if(tabIndex == 0){
+    Navigator.of(context).pushNamed("/compose");
+    }else {
+    Navigator.of(context).pushNamed("/compose");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +61,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           new QuestionPage(),
           new ClosetPage(),
         ],
+      ),
+      floatingActionButton: new FloatingActionButton(
+        child: new Icon(fabIcon),
+        onPressed: () => _fabPressed(),
       ),
       bottomNavigationBar: new Material(
         color: Colors.blue,

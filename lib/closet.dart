@@ -25,8 +25,8 @@ class _ClosetPageState extends State<ClosetPage> {
     super.initState();
     _firebaseAuth.onAuthStateChanged.listen((user) {
       setState(() {
-        print("auth state change");
-        print(user);
+        // print("auth state change");
+        // print(user);
         _currentUser = user;
       });
     });
