@@ -40,11 +40,21 @@ class _ClosetPageState extends State<ClosetPage> {
     return new GridTile(
       child: new FlatButton(
         padding: EdgeInsets.all(0.0),
-        // child: new Image.network(document["imageUrl"]),
-        child: new CachedNetworkImage(
-          fadeInDuration: Duration(milliseconds: 0),
-          imageUrl: document["imageUrl"].toString()
+        child: Container(
+          decoration: new BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: new CachedNetworkImageProvider(
+                  document["imageUrl"].toString()),
+            ),
           ),
+        ),
+
+        // child: new CachedNetworkImage(
+        //   fit: BoxFit.cover,
+        //   fadeInDuration: Duration(milliseconds: 0),
+        //   imageUrl: document["imageUrl"].toString()
+        //   ),
         // child: new Text("some"),
         onPressed: () {
           print("tap");
