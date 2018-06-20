@@ -35,11 +35,21 @@ class _ClosetPageState extends State<ClosetPage> {
   }
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-    return new FlatButton(
-      child: new CachedNetworkImage(imageUrl: document["imageUrl"]),
-      onPressed: () {
-        print("tap");
-      },
+    // print("document image url");
+    // print(document["imageUrl"].toString());
+    return new GridTile(
+      child: new FlatButton(
+        padding: EdgeInsets.all(0.0),
+        // child: new Image.network(document["imageUrl"]),
+        child: new CachedNetworkImage(
+          fadeInDuration: Duration(milliseconds: 0),
+          imageUrl: document["imageUrl"].toString()
+          ),
+        // child: new Text("some"),
+        onPressed: () {
+          print("tap");
+        },
+      ),
     );
   }
 
@@ -56,10 +66,33 @@ class _ClosetPageState extends State<ClosetPage> {
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) return new CircularProgressIndicator();
-              return new ListView.builder(
-                  itemCount: snapshot.data.documents.length,
-                  itemBuilder: (context, index) =>
-                      _buildListItem(context, snapshot.data.documents[index]));
+              return new GridView.count(
+                crossAxisCount: 3,
+                childAspectRatio: 1.0,
+                // children: [
+                //   new Text("some"),
+                //   new Text("yau"),
+                //   new Text("third"),
+                //   new Text("some"),
+                //   new Text("yau"),
+                //   new Text("third"),
+                //   new Text("some"),
+                //   new Text("yau"),
+                //   new Text("third"),
+                // ],
+                // children: List.generate(snapshot.data.documents.length, (index) {
+                children: new List<Widget>.generate(
+                    snapshot.data.documents.length, (index) {
+                  return _buildListItem(
+                      context, snapshot.data.documents[index]);
+                  return new GridTile(
+                      child: new Center(child: new Text("some ${index}")));
+                }),
+              );
+              // return new ListView.builder(
+              //     itemCount: snapshot.data.documents.length,
+              //     itemBuilder: (context, index) =>
+              //         _buildListItem(context, snapshot.data.documents[index]));
             },
           );
   }

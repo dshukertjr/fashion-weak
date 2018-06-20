@@ -34,7 +34,6 @@ class _QuestionPageState extends State<QuestionPage> {
     });
   }
 
-
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
     // print(document["question"]);
     return new FlatButton(
@@ -46,19 +45,16 @@ class _QuestionPageState extends State<QuestionPage> {
             new Row(
               children: <Widget>[
                 new Container(
-                  width: 100.0,
-                  height: 100.0,
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: new DecorationImage(
-                      image: 
-            // new CachedNetworkImage(
-            //   imageUrl:
-            //       'https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg',
-            // ),
-                      new NetworkImage('https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg'),
-                    ),
-                  ),
+                  width:80.0,
+                  height: 80.0,
+                  child: new CachedNetworkImage(
+                    fadeInDuration: Duration(milliseconds: 0),
+                    imageUrl: document["imageUrl"] == null?"https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg":document["imageUrl"]),
+                  // decoration: new BoxDecoration(
+                  //   shape: BoxShape.circle,
+                  //           image: new DecorationImage(
+                  //             image: new NetworkImage('https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg'),
+                  //           ),
                 ),
                 new Flexible(
                     child: new Padding(
