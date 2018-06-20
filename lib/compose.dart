@@ -8,10 +8,10 @@ final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 final Firestore _firestore = Firestore.instance;
 var currentUser = _firebaseAuth.onAuthStateChanged;
 
-Future<bool> isLoggedin() async {
-  final currentUser = await _firebaseAuth.currentUser();
-  return currentUser != null;
-}
+// Future<bool> isLoggedin() async {
+//   final currentUser = await _firebaseAuth.currentUser();
+//   return currentUser != null;
+// }
 
 class ComposePage extends StatefulWidget {
   final String title;
@@ -38,12 +38,13 @@ class _ComposePageState extends State<ComposePage> {
     currentUser = await _firebaseAuth.currentUser();
     }
     final time = new DateTime.now();
+    Navigator.pop(context);
+    print("after popping");
     await _firestore.collection('questions').add({
       'uid': currentUser.uid,
       'question': question,
       'time': time
     });
-    Navigator.pop(context);
   }
 
   void _signOut() {

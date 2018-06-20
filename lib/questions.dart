@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'dart:async';
 import 'dart:core';
 
@@ -34,6 +36,7 @@ class _QuestionPageState extends State<QuestionPage> {
 
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
+    // print(document["question"]);
     return new FlatButton(
       child: new Container(
         // color: Colors.green,
@@ -48,8 +51,12 @@ class _QuestionPageState extends State<QuestionPage> {
                   decoration: new BoxDecoration(
                     shape: BoxShape.circle,
                     image: new DecorationImage(
-                      image: new NetworkImage(
-                          'https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg'),
+                      image: 
+            // new CachedNetworkImage(
+            //   imageUrl:
+            //       'https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg',
+            // ),
+                      new NetworkImage('https://pbs.twimg.com/profile_images/945853318273761280/0U40alJG_400x400.jpg'),
                     ),
                   ),
                 ),
@@ -77,6 +84,8 @@ class _QuestionPageState extends State<QuestionPage> {
             stream: _firestore
                 .collection('questions')
                 .where("uid", isEqualTo: _currentUser.uid)
+                .orderBy("time", descending: true)
+                .limit(20)
                 .snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) return new CircularProgressIndicator();

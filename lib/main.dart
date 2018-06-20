@@ -8,6 +8,7 @@ import 'dart:core';
 import 'home.dart';
 import 'login.dart';
 import 'compose.dart';
+import 'takePhoto.dart';
 
 final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 final Firestore _firestore = Firestore.instance;
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
             new HomePage(title: 'Questions'),
         "/login": (BuildContext context) => new LoginPage(title: 'Login'),
         "/compose": (BuildContext context) => new ComposePage(title: 'Compose'),
+        "/takePhoto": (BuildContext context) => new TakePhotoPage(title: 'New Cloth'),
       },
     );
   }

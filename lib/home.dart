@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'questions.dart';
 import 'closet.dart';
+import 'takePhoto.dart';
 
 import 'dart:async';
 import 'dart:core';
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   void _tabChanged () {
-    print("tab changed called");
+    // print("tab changed called");
     final tabIndex = controller.index;
     setState(() {
           fabIcon = tabIndex == 0? Icons.add: Icons.camera_alt;
@@ -40,11 +41,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   void _fabPressed() {
     final tabIndex = controller.index;
-    print(tabIndex);
+    // print(tabIndex);
     if(tabIndex == 0){
-    Navigator.of(context).pushNamed("/compose");
+      Navigator.of(context).pushNamed("/compose");
     }else {
-    Navigator.of(context).pushNamed("/compose");
+      Navigator.of(context).pushNamed("/takePhoto");
     }
   }
 

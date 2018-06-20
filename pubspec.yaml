@@ -10,6 +10,10 @@ dependencies:
   cupertino_icons: ^0.1.2
   cloud_firestore: ^0.7.3
   firebase_auth: ^0.5.11
+  image_picker: ^0.4.5
+  firebase_storage: ^0.3.7
+  cached_network_image: ^0.4.1+1
+
 
 
 
